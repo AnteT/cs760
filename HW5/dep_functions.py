@@ -113,7 +113,7 @@ class KMeansClustering:
     
     def fit(self, X:np.ndarray):
         self.X = X
-        self.centroids = [np.random.choice(self.X, self.n_clusters, replace=False)]
+        self.centroids = self.X[np.random.choice(self.X.shape[0], self.n_clusters, replace=False), :]
         for _ in range(self.n_clusters-1):
             distances = np.sum([self.get_euclidean_distance(centroid, X) for centroid in self.centroids], axis=0)
             distances /= np.sum(distances)
